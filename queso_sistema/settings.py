@@ -26,19 +26,19 @@ SECRET_KEY = 'django-insecure-5$yqcl^nxf(2e)m)!b7nkf=-$qdc#otf#^$c9op=k2mrc)j-nc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ 'quesosistema-d5g6gra4b8a2e6dj.eastus2-01.azurewebsites.net',
+ALLOWED_HOSTS = [ 'quesosistema-d5g6gra4b8a2e6dj.canadacentral-01.azurewebsites.net',
     'localhost',
     '127.0.0.1',]
 
 # Allow CSRF 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://quesosistema-d5g6gra4b8a2e6dj.eastus2-01.azurewebsites.net',
+    'https://quesosistema-d5g6gra4b8a2e6dj.canadacentral-01.azurewebsites.net',
 ]
 
-CSRF_COOKIE_DOMAIN = 'quesosistema-d5g6gra4b8a2e6dj.eastus2-01.azurewebsites.net'
+CSRF_COOKIE_DOMAIN = 'quesosistema-d5g6gra4b8a2e6dj.canadacentral-01.azurewebsites.net'
 
-SESSION_COOKIE_DOMAIN = 'quesosistema-d5g6gra4b8a2e6dj.eastus2-01.azurewebsites.net'
+SESSION_COOKIE_DOMAIN = 'quesosistema-d5g6gra4b8a2e6dj.canadacentral-01.azurewebsites.net'
 
 CSRF_COOKIE_SECURE = True
 
