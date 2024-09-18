@@ -1,0 +1,104 @@
+{% extends "blog/infoBase.html" %}
+{% load static %}
+{% block main %}
+<style>
+    .about-us {
+        background-color: #fbfaf3;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 15px 0;
+        text-align: left; 
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .title-section {
+        padding: 40px;
+        position: relative;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .title-section img {
+        width: 100%;
+        height: auto;
+        opacity: 0.7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+    
+    .title-section h1 {
+        font-size: 50px;
+        color: #333;
+        margin: 0;
+        padding: 20px 0;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .title-section .date {
+        font-size: 20px;
+        color: #00563F;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .about-us h2 {
+        font-size: 24px;
+        color: #00563F;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+    
+    .about-us p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    
+    .about-us img {
+        width: 60%;
+        height: auto;
+        margin: 10px 0;
+        border-radius: 8px;
+    }
+</style>
+<main>
+    
+        <div class="title-section">
+            <img src="{% static 'images/produccionblg.jpg' %}" alt="Producción de Quesos Rellenos">
+            <h1>Producción de Quesos Rellenos: Una Combinación de Tradición</h1>
+            <div class="date">12 agosto 2024</div>
+        </div>
+    <section class="about-us">
+        <p>En Proarcol, siempre buscamos innovar sin perder de vista nuestras raíces. Un claro ejemplo de esto es la producción de nuestros quesos rellenos, donde la tradición del queso se combina con sabores dulces y únicos como el arequipe, la mermelada de mora y el bocadillo. En este artículo, exploramos cómo se lleva a cabo este delicioso proceso, desde la selección de los ingredientes hasta el resultado final que tanto encanta a nuestros clientes.</p>
+
+        <h2>La Importancia de los Ingredientes</h2>
+        <p>La calidad de los ingredientes es fundamental para producir quesos rellenos de alta calidad. No solo nos enfocamos en la leche fresca, sino que los rellenos, como el arequipe artesanal, la mermelada de mora hecha a mano y el bocadillo de guayaba, son seleccionados con especial cuidado. Cada uno de estos ingredientes aporta un toque de dulzura y sabor auténtico, complementando perfectamente la suavidad del queso.</p>
+
+        <h2>El Proceso de Producción</h2>
+        <p>Para producir nuestros quesos rellenos, el proceso comienza con la creación del queso base. Una vez que la leche ha sido pasteurizada y cuajada, el queso se moldea y se deja enfriar ligeramente. A diferencia de otros quesos, nuestros quesos rellenos requieren una técnica especial: una vez que el queso está en su punto óptimo, se corta y se rellena cuidadosamente con una capa generosa de arequipe, mermelada de mora o bocadillo, según la variedad.</p>
+        <img src="{% static 'images/produccionblg2.jpg' %}" alt="Producción de Quesos Rellenos">
+
+        <h2>Un Proceso Artesanal</h2>
+        <p>El relleno es un paso delicado que se realiza manualmente para asegurar una distribución uniforme y evitar que el queso pierda su textura original. Después de ser rellenos, los quesos se sellan y se prensan ligeramente, lo que les da su forma final. Este proceso artesanal garantiza que cada pieza de queso mantenga la calidad y consistencia por la que somos reconocidos.</p>
+
+        <h2>La Curación y el Envejecimiento</h2>
+        <p>Aunque los quesos rellenos no requieren un largo proceso de curación como otros tipos de queso, sí pasan por un breve periodo de maduración para que los sabores del queso y el relleno se integren adecuadamente. Dependiendo de la variedad, este periodo puede durar entre una y dos semanas. Durante este tiempo, los quesos son monitoreados para asegurar que mantengan su frescura y sabor óptimo.</p>
+        <img src="{% static 'images/queso_rellenoblg2.jpg' %}" alt="Maduración de los Quesos Rellenos">
+
+        <h2>Los Sabores: Arequipe, Mermelada y Bocadillo</h2>
+        <p>Cada relleno ofrece una experiencia única. El arequipe, con su sabor suave y dulce, aporta una cremosidad extra que complementa la textura del queso. La mermelada de mora, por otro lado, introduce una nota ligeramente ácida y frutal, mientras que el bocadillo de guayaba resalta el dulce tradicional colombiano, generando una mezcla irresistible de sabores. Estos quesos rellenos son perfectos para una ocasión especial o para sorprender a los más golosos.</p>
+
+        <h2>Innovación en la Tradición</h2>
+        <p>En Proarcol, nos enorgullecemos de mantener nuestras tradiciones queseras al tiempo que buscamos nuevas maneras de sorprender a nuestros clientes. Los quesos rellenos de arequipe, mermelada de mora y bocadillo son el resultado de esta búsqueda constante de innovación. Cada bocado es una mezcla de texturas y sabores que refleja tanto la calidad de nuestros productos como la pasión que ponemos en su elaboración.</p>
+
+        <h2>Conclusión</h2>
+        <p>La producción de quesos rellenos en Proarcol no es solo una fusión de sabores, sino un reflejo de nuestro compromiso con la excelencia. Desde la cuidadosa selección de ingredientes hasta el proceso de producción artesanal, nos aseguramos de que cada pieza sea un deleite para el paladar. Si buscas algo diferente pero delicioso, nuestros quesos rellenos son la opción perfecta. ¡Ven y pruébalos por ti mismo!</p>
+    </section>
+</main>
+{% endblock %}

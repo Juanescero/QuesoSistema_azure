@@ -1,0 +1,106 @@
+{% extends "blog/infoBase.html" %}
+{% load static %}
+{% block main %}
+<style>
+    .about-us {
+        background-color: #fbfaf3;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 15px 0;
+        text-align: left; 
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .title-section {
+        padding: 40px;
+        position: relative;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .title-section img {
+        width: 100%;
+        height: auto;
+        opacity: 0.7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+    
+    .title-section h1 {
+        font-size: 50px;
+        color: #333;
+        margin: 0;
+        padding: 20px 0;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .title-section .date {
+        font-size: 20px;
+        color: #00563F;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .about-us h2 {
+        font-size: 24px;
+        color: #00563F;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+    
+    .about-us p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    
+    .about-us img {
+        width: 60%;
+        height: auto;
+        margin: 10px 0;
+        border-radius: 8px;
+    }
+</style>
+<main>
+    
+        <div class="title-section">
+            <img src="{% static 'images/backgroundblg1.jpeg' %}" alt="Proceso de Elaboración">
+            <h1>Elaboración del Queso: De la Leche a la Delicia</h1>
+            <div class="date">29 julio 2024</div>
+        </div>
+    <section class="about-us">
+        <p>En Proarcol, la elaboración del queso es un arte que se ha perfeccionado a lo largo de los años. No solo se trata de un proceso meticuloso, sino también de una historia de tradición y dedicación que transforma la leche en un manjar exquisito. En este artículo, vamos a explorar en detalle el proceso de elaboración del queso, con un enfoque especial en la cantidad de leche necesaria y la merma que ocurre durante la curación.</p>
+
+        <h2>La Materia Prima:</h2>
+        <p>Para elaborar un buen queso, la calidad de la leche es fundamental. La leche es rica en nutrientes, incluyendo proteínas, grasas y minerales, lo que la hace ideal para la producción de quesos de alta calidad. En promedio, una vaca puede producir entre 1 y 2 litros de leche al día, dependiendo las condiciones de manejo.</p>
+
+        <h2>Cantidad de Leche Necesaria</h2>
+        <p>Para producir un kilogramo de queso, se necesitan aproximadamente 5 litros de leche. Este número puede variar según el tipo de queso y el método de elaboración, pero en general, la relación de leche a queso se mantiene bastante constante. La cantidad de leche utilizada es crucial para determinar no solo la cantidad de queso producido, sino también su textura y sabor.</p>
+        <img src="{% static 'images/proceso_elaboracionblg1.jpg' %}" alt="Proceso de Elaboración">
+
+        <h2>El Proceso de Elaboración</h2>
+        <p>El proceso de elaboración del queso comienza con la coagulación de la leche, un paso crítico que implica la adición de cuajo. Una vez que la leche se ha coagulado, se corta la cuajada en pequeños trozos para facilitar la liberación del suero. Este suero se separa de la cuajada, que luego se moldea y se prensa para eliminar más suero y darle forma al queso.</p>
+
+        <h2>La Merma Durante la Curación</h2>
+        <p>Una vez que el queso ha sido moldeado y prensado, comienza la etapa de curación. Durante este proceso, el queso pierde una cantidad significativa de peso debido a la evaporación del agua y la continua eliminación de suero. Esta pérdida, conocida como merma, puede ser considerable. En general, un queso puede perder entre el 10% y el 30% de su peso inicial durante la curación. Por ejemplo, si empezamos con un queso de 2 kilogramos, es posible que termine pesando alrededor de 1.5 a 1.8 kilogramos después de varios meses de curación.</p>
+        <img src="{% static 'images/merma_curacionblg1.jpg' %}" alt="Merma Durante la Curación">
+
+        <h2>Factores que Afectan la Merma</h2>
+        <p>La cantidad de merma depende de varios factores, incluyendo la humedad del ambiente, la temperatura de curación, y la duración del proceso. En Proarcol, controlamos cuidadosamente estas variables para asegurar que cada queso alcance su máxima calidad. Una curación lenta y controlada permite que los sabores se desarrollen plenamente, resultando en un producto final que es verdaderamente excepcional.</p>
+
+        <h2>El Resultado Final: Un Queso Exquisito</h2>
+        <p>Después de la curación, el queso está listo para ser disfrutado. En Proarcol, nos enorgullecemos de producir quesos que reflejan la rica tradición y el saber hacer de nuestra región. Cada pieza de queso es el resultado de un proceso largo y cuidadoso que comienza con la leche de nuestras vacas y termina con un producto que deleita los sentidos.</p>
+
+        <h2>Conclusión</h2>
+        <p>La elaboración del queso es un proceso fascinante y complejo que va más allá de la simple transformación de leche en queso. Desde la cantidad de leche necesaria hasta la merma durante la curación, cada etapa del proceso es crucial para producir un queso de alta calidad. En Proarcol, nos dedicamos a perfeccionar este arte para ofrecer a nuestros clientes los mejores quesos.</p>
+
+        <p>Si alguna vez te has preguntado qué se necesita para elaborar un delicioso queso, ahora sabes que detrás de cada bocado hay mucho trabajo, paciencia y amor por la tradición. Ven a visitarnos y descubre por ti mismo el sabor incomparable de nuestros quesos.</p>
+    </section>
+</main>
+{% endblock %}

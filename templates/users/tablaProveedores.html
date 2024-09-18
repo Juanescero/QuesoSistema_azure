@@ -1,0 +1,46 @@
+{% extends 'sales/basedash.html' %}
+
+{% block style %}
+  <!-- Puedes agregar estilos aquí si es necesario -->
+{% endblock %}
+
+{% block main %}
+  <div class="content px-5">
+    <!-- Tabla -->
+    <div class="card mb-4 card-table mt-4">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            Lista de Proveedores
+          </div>
+        </div>
+      </div>
+      <div class="card card-custom">
+        <div class="table-responsive">
+          <table id="datatablesSimple" class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Correo Electrónico</th>
+                <th>Contacto</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for proveedor in proveedores %}
+                <tr>
+                  <td>{{ proveedor.nombre }}</td>
+                  <td>{{ proveedor.direccion }}</td>
+                  <td>{{ proveedor.telefono }}</td>
+                  <td>{{ proveedor.email }}</td>
+                  <td>{{ proveedor.contacto }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

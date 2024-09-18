@@ -1,0 +1,107 @@
+{% extends "blog/infoBase.html" %}
+{% load static %}
+{% block main %}
+<style>
+    
+    .about-us {
+        background-color: #fbfaf3;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 15px 0;
+        text-align: center; 
+    }
+    
+    .about-us h1 {
+        font-size: 50px;
+        color: #333;
+        margin-bottom: 40px;
+    }
+    
+    .product {
+        margin-bottom: 20px;
+        text-align: left; 
+    }
+    
+    .product h2 {
+        font-size: 30px;
+        color: #00563F;
+        margin-bottom: 20px;
+        text-align: center; 
+    }
+    
+    .product-content {
+        display: flex;
+        align-items: center;
+    }
+    
+    .product img {
+        width: 30%; 
+        height: auto;
+        margin-right: 20px; 
+        border-radius: 8px;
+    }
+    
+    .product p {
+        font-size: 18px;
+        color: #555;
+        line-height: 1.6;
+        flex: 1; 
+    }
+    
+</style>
+<main>
+    <section class="about-us">
+        <h1>🧀 Materias Primas de Proarcol</h1>
+
+        <div class="product">
+            <h2>Leche Fresca</h2>
+            <div class="product-content">
+                <img src="{% static 'images/lechemp.jpg' %}" alt="Leche Fresca">
+                <p>La base de todos nuestros quesos es la leche fresca de alta calidad. Obtenida de granjas locales, esta leche garantiza la autenticidad y el sabor natural de nuestros productos. La frescura y pureza de la leche son esenciales para producir quesos con una textura y sabor excepcionales.</p>
+            </div>
+        </div>
+
+        <div class="product">
+            <h2>Bocadillo de Guayaba</h2>
+            <div class="product-content">
+                <img src="{% static 'images/bocadillomp.jpg' %}" alt="Bocadillo de Guayaba">
+                <p>Utilizado en nuestro queso relleno de bocadillo, este dulce tradicional colombiano aporta un sabor dulce y frutal que complementa perfectamente la cremosidad del queso. Hecho de guayabas frescas, el bocadillo es una delicia que realza nuestros productos.</p>
+            </div>
+        </div>
+
+        <div class="product">
+            <h2>Arequipe</h2>
+            <div class="product-content">
+                <img src="{% static 'images/arequipemp.jpg' %}" alt="Arequipe">
+                <p>Conocido también como dulce de leche, el arequipe es una de nuestras materias primas estrella. Su dulzura rica y cremosa se mezcla armoniosamente con el queso, creando una experiencia de sabor única. Ideal para nuestros quesos rellenos de arequipe.</p>
+            </div>
+        </div>
+
+        <div class="product">
+            <h2>Mermelada de Mora</h2>
+            <div class="product-content">
+                <img src="{% static 'images/mermeladamp.jpg' %}" alt="Mermelada de Mora">
+                <p>Utilizada en nuestro queso relleno de mora, esta mermelada aporta un toque frutal y ligeramente ácido que se equilibra con la suavidad del queso. Hecha de moras frescas, es perfecta para aquellos que buscan un sabor diferente y sofisticado.</p>
+            </div>
+        </div>
+
+        <div class="product">
+            <h2>Chocolate</h2>
+            <div class="product-content">
+                <img src="{% static 'images/chocolatemp.jpg' %}" alt="Chocolate">
+                <p>El chocolate utilizado en nuestros quesos rellenos es de la más alta calidad, aportando una intensidad y riqueza de sabor que se combina perfectamente con la cremosidad del queso. Ideal para los amantes del cacao y para ocasiones especiales.</p>
+            </div>
+        </div>
+
+        <div class="product">
+            <h2>Sal</h2>
+            <div class="product-content">
+                <img src="{% static 'images/salmp.jpg' %}" alt="Sal">
+                <p>Un ingrediente esencial en la elaboración de todos nuestros quesos. La sal no solo realza el sabor del queso, sino que también actúa como conservante natural, ayudando a mantener la frescura y calidad de nuestros productos.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

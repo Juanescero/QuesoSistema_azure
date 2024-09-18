@@ -1,0 +1,102 @@
+{% extends "blog/infoBase.html" %}
+{% load static %}
+{% block main %}
+<style>
+    .about-us {
+        background-color: #fbfaf3;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 15px 0;
+        text-align: center; 
+    }
+    
+    .about-us h1 {
+        font-size: 50px;
+        color: #333;
+        margin-bottom: 40px;
+    }
+    
+    .product {
+        margin-bottom: 20px;
+        text-align: left; 
+    }
+    
+    .product h2 {
+        font-size: 30px;
+        color: #00563F;
+        margin-bottom: 20px;
+        text-align: center; 
+    }
+    
+    .product-content {
+        display: flex;
+        align-items: center;
+    }
+    
+    .product img {
+        width: 30%; 
+        height: auto;
+        margin-right: 20px; 
+        border-radius: 8px;
+    }
+    
+    .product p {
+        font-size: 18px;
+        color: #555;
+        line-height: 1.6;
+        flex: 1; 
+    }
+    
+    
+</style>
+<main>
+    <section class="about-us">
+        <h1>🧀 Quesos de Proarcol</h1>
+
+        <div class="product">
+            <h2>Queso Relleno de Bocadillo</h2>
+            <div class="product-content">
+                <img src="{% static 'images/Queso1.png' %}" alt="Queso Relleno de Bocadillo">
+                <p>Una deliciosa combinación de queso y bocadillo, ofreciendo un equilibrio perfecto entre lo dulce y lo salado. Ideal para postres y meriendas. Este queso relleno es una verdadera delicia para los amantes de los sabores contrastantes. El bocadillo, hecho de guayaba, aporta un toque dulce que complementa perfectamente la cremosidad del queso. Es perfecto para disfrutar solo o acompañado de galletas y pan fresco.</p>
+            </div>
+        </div>
+
+        <div class="product">
+            <h2>Queso Relleno de Arequipe</h2>
+            <div class="product-content">
+                <img src="{% static 'images/Queso2.png' %}" alt="Queso Relleno de Arequipe">
+                <p>La combinación perfecta de queso y arequipe, creando una experiencia dulce y cremosa que deleitará a todos los paladares. El arequipe, conocido también como dulce de leche, aporta una dulzura rica que se mezcla armoniosamente con la textura del queso. Este producto es ideal para disfrutar como postre o para acompañar frutas frescas y nueces.</p>
+            </div>
+        </div>
+
+        <div class="product">
+            <h2>Queso Pera</h2>
+            <div class="product-content">
+                <img src="{% static 'images/Queso3.png' %}" alt="Queso Pera">
+                <p>Un queso suave y cremoso, ideal para disfrutar en cualquier momento del día. Su textura y sabor lo hacen perfecto para acompañar una variedad de platos. Este queso es conocido por su forma característica y su capacidad para derretirse fácilmente, lo que lo convierte en una excelente opción para sándwiches, ensaladas y aperitivos. Además, su sabor suave lo hace ideal para combinar con frutas frescas y frutos secos.</p>
+            </div>
+        </div>
+
+        <h1>Ideas Innovadoras</h1>
+
+        <div class="product">
+            <h2>Queso Relleno de Mora</h2>
+            <div class="product-content">
+                <img src="{% static 'images/Queso4.png' %}" alt="Queso Relleno de Mora">
+                <p>Un queso relleno con una exquisita mermelada de mora, perfecto para aquellos que buscan un toque frutal en sus comidas. La acidez de la mora se equilibra con la suavidad del queso, creando una experiencia de sabor única. Este queso es ideal para servir en tablas de quesos, acompañado de vino tinto o como parte de un postre sofisticado.</p>
+            </div>
+        </div>
+
+        <div class="product">
+            <h2>Queso Relleno de Chocolate</h2>
+            <div class="product-content">
+                <img src="{% static 'images/Queso5.png' %}" alt="Queso Relleno de Chocolate">
+                <p>Un queso innovador relleno de chocolate, ideal para los amantes del cacao. Perfecto para postres y ocasiones especiales. Este queso combina la cremosidad del queso con la intensidad del chocolate, creando una experiencia de sabor única. Es perfecto para servir en eventos especiales, acompañado de frutas frescas o como parte de un postre gourmet.</p>
+            </div>
+        </div>
+
+    </section>
+</main>
+
+{% endblock %}

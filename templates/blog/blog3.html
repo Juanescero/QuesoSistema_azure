@@ -1,0 +1,104 @@
+{% extends "blog/infoBase.html" %}
+{% load static %}
+{% block main %}
+<style>
+    .about-us {
+        background-color: #fbfaf3;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 15px 0;
+        text-align: left; 
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .title-section {
+        padding: 40px;
+        position: relative;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .title-section img {
+        width: 100%;
+        height: auto;
+        opacity: 0.7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+    
+    .title-section h1 {
+        font-size: 50px;
+        color: #333;
+        margin: 0;
+        padding: 20px 0;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .title-section .date {
+        font-size: 20px;
+        color: #00563F;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .about-us h2 {
+        font-size: 24px;
+        color: #00563F;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+    
+    .about-us p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    
+    .about-us img {
+        width: 60%;
+        height: auto;
+        margin: 10px 0;
+        border-radius: 8px;
+    }
+</style>
+<main>
+    
+        <div class="title-section">
+            <img src="{% static 'images/fromagoblg.jpeg' %}" alt="Encuentro de Sabores">
+            <h1>Un Encuentro de Tradición y Sabor: Quesos Rellenos que Sorprenden</h1>
+            <div class="date">15 agosto 2024</div>
+        </div>
+    <section class="about-us">
+        <p>En Proarcol, estamos profundamente orgullosos de nuestra tradición quesera y de la creatividad que ponemos en la elaboración de nuestros productos. Este septiembre, participaremos en un evento que celebra lo mejor de la producción láctea: una feria dedicada a los quesos rellenos, una oportunidad perfecta para mostrar nuestras innovaciones. Este evento reúne a expertos y apasionados del queso, y queremos destacar nuestros quesos rellenos de arequipe, mermelada de mora y bocadillo.</p>
+
+        <h2>La Feria de Quesos Rellenos</h2>
+        <p>Esta feria es uno de los eventos más esperados para aquellos que aman la combinación del queso con ingredientes dulces. Celebrada en el corazón de la región, la feria se ha convertido en un punto de encuentro para productores, chefs y fanáticos del queso, deseosos de descubrir productos únicos y tendencias innovadoras. Durante los días del evento, del 14 al 17 de septiembre de 2024, la feria destacará la versatilidad del queso como base para combinaciones sorprendentes con rellenos dulces y tradicionales.</p>
+
+        <h2>Nuestra Participación en la Feria 2024</h2>
+        <p>Para nosotros en Proarcol, la feria es la oportunidad perfecta para mostrar la pasión y dedicación que ponemos en la creación de nuestros quesos rellenos. En nuestro stand, los visitantes podrán degustar quesos rellenos que fusionan lo mejor de nuestros procesos artesanales con ingredientes tradicionales y populares como el arequipe, la mermelada de mora y el bocadillo. Cada uno de nuestros quesos cuenta una historia de innovación y tradición, preservando el sabor de siempre con un toque moderno.</p>
+        <img src="{% static 'images/fromagoblg3.jpg' %}" alt="Producción de Quesos Rellenos">
+
+        <h2>Delicias para Todos los Gustos</h2>
+        <p>Entre los quesos que presentaremos en la feria destacan nuestras combinaciones más populares. El queso relleno de arequipe ofrece una experiencia suave y dulce, perfecta para quienes buscan un toque indulgente. Por otro lado, la mermelada de mora aporta un contraste frutal y ligeramente ácido que complementa a la perfección la suavidad del queso. Y no podemos olvidar nuestro queso relleno de bocadillo, una verdadera joya que combina lo mejor del queso con el dulce tradicional de guayaba.</p>
+
+        <h2>Actividades y Degustaciones</h2>
+        <p>La feria ofrecerá actividades que permitirán a los visitantes explorar todas las posibilidades de los quesos rellenos. Se realizarán degustaciones guiadas, donde los asistentes podrán probar nuestras variedades más emblemáticas, con explicaciones sobre sus características, procesos de elaboración y maridajes ideales. Además, habrá demostraciones de cocina en vivo, en las que chefs invitados mostrarán cómo los quesos rellenos pueden ser utilizados en recetas creativas e innovadoras.</p>
+        <img src="{% static 'images/feriablg3.jpg' %}" alt="Degustaciones en la Feria">
+
+        <h2>Encuentros Profesionales</h2>
+        <p>Además de ser un evento para el público en general, la feria es una excelente oportunidad para establecer contactos comerciales. Durante estos días, tendremos la oportunidad de reunirnos con distribuidores y minoristas, lo que nos permitirá abrir nuevas puertas y explorar colaboraciones para llevar nuestros quesos a más personas, tanto a nivel nacional como internacional.</p>
+
+        <h2>Un Evento para Todos los Sentidos</h2>
+        <p>La feria de quesos rellenos no es solo un evento para los profesionales del sector; también está abierta al público general, invitando a todos a disfrutar de la riqueza y diversidad que ofrece el queso. Desde los quesos rellenos más dulces hasta los más equilibrados, todos podrán encontrar algo que los sorprenda. Invitamos a todos los amantes del queso a visitar nuestro stand y descubrir por qué nuestros quesos rellenos son una experiencia única para el paladar.</p>
+        <img src="{% static 'images/feria2blg3.jpg' %}" alt=" Feria">
+        <h2>Conclusión</h2>
+        <p>La feria de quesos rellenos de septiembre es una cita imperdible para cualquier amante del queso. En Proarcol estamos emocionados de formar parte de este evento y de poder compartir nuestra pasión por la tradición quesera, combinada con toques de innovación. Los esperamos del 14 al 17 de septiembre para que prueben nuestros quesos rellenos y celebremos juntos el sabor y la excelencia.</p>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,155 @@
+{% extends 'blog/infoBase.html' %}
+{% load static %}
+{% block style %}
+  <style>
+    .about-us {
+      background-color: #fbfaf3;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 15px 0;
+      text-align: center;
+    }
+    
+    .about-us h1 {
+      font-size: 50px;
+      color: #fff3e8;
+      margin-bottom: 20px;
+      text-align: center;
+      background-color: #114f20;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    
+    .about-us h2 {
+      font-size: 30px;
+      color: #8b5a2b;
+      margin-bottom: 20px;
+    }
+    
+    .about-us p {
+      width: 85%; /* Controla el ancho del párrafo */
+      font-size: 18px;
+      color: #8b5a2b;
+      line-height: 1.6;
+      text-align: justify;
+      margin: 0 auto;
+    }
+    
+    .about-us strong {
+      color: #00563f;
+    }
+    
+    .about-us img {
+      width: 50px;
+      height: auto;
+    }
+    
+    .carta {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: calc(100% - 10cm);
+      margin: 20px auto;
+      max-width: 1200px;
+    }
+    
+    .contenido {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    
+    .contenido img {
+      flex-shrink: 0;
+      width: auto;
+      height: 800px;
+    }
+    
+    .contenido p {
+      flex-grow: 1;
+    }
+
+    .video-extra {
+      margin-top: 80px;
+    }
+    
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .texto {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .info,
+    .mision,
+    .vision {
+      text-align: center;
+    }
+    
+    .info h3,
+    .mision h3,
+    .vision h3 {
+      font-size: 24px;
+      color: #8b5a2b;
+      margin-bottom: 10px;
+    }
+    
+    .info p,
+    .mision p,
+    .vision p {
+      font-size: 18px;
+      color: #8b5a2b;
+      line-height: 1.6;
+      text-align: justify;
+      margin: 0 auto; /* Centrar párrafos */
+      max-width: 700px;
+      border-radius: 8px;
+      padding: 15px; /* Espacio entre el texto y el borde */
+      box-shadow: 0 4px 8px rgba(128, 128, 0, 0.2); /* Sombra verde oliva claro */
+      background-color: #f5f5e1; /* Fondo muy suave para mayor legibilidad */
+    }
+  </style>
+{% endblock %}
+{% block main %}
+  <section class="about-us">
+    <div class="carta">
+      <h1>🧀 Conoce Proarcol</h1>
+      <h2>El Arte de Hacer Quesos</h2>
+      <div class="contenido">
+        <img src="{% static 'images/chef.jpg' %}" alt="Imagen de Proarcol"/>
+        <div class="texto">
+          <div class="info">
+            <h3>Información</h3>
+            <p>
+              <strong>Proarcol</strong> es una fábrica de quesos colombiana, ubicada en el corazón del país. Nos asociamos con granjas locales para obtener leche fresca y garantizamos productos de alta calidad. Cada pieza es elaborada con dedicación y supervisada por nuestros expertos queseros, asegurando un sabor auténtico en cada etapa de producción.
+            </p>
+          </div>
+          <div class="mision">
+            <h3>Misión</h3>
+            <p>
+              En <strong>Proarcol</strong>, nos dedicamos a ofrecer productos lácteos excepcionales que combinan técnicas tradicionales con innovación. Nuestra misión es deleitar a nuestros clientes, asegurando que cada queso que fabricamos cumpla con los más altos estándares de calidad y sabor.
+            </p>
+          </div>
+          <div class="vision">
+            <h3>Visión</h3>
+            <p>Buscamos ser líderes en sostenibilidad dentro de la industria láctea, implementando prácticas ecológicas que respeten el medio ambiente. Nuestra visión es seguir innovando, ofreciendo productos responsables que contribuyan al bienestar de las generaciones futuras.</p>
+          </div>
+        </div>
+      </div>
+      <div class="video-extra">
+        {% comment %} <img src="{% static 'images/BG2.jpg' %}" alt="Imagen extra de Proarcol" /> {% endcomment %}
+        <video  controls  loop>
+          <source src="{% static 'images/PROARCOL.mp4' %}" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'basedashInventario.html' %}
+{% block main%}
+<main>
+  <div class="container-fluid px-4">
+    <h1 class="mt-4">Inventario</h1>
+    <div class="row">
+      <div class="card mb-4">
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <i class="fas fa-table me-1"></i>
+              Stock bajo Materias primas
+            </div>                           
+          </div>
+        </div>
+        <div class="card-body">
+          <table id="datatablesSimple" class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 8%;"><a href="#">Nombre</a></th>
+                    <th style="width: 18.057720057720058%;"><a href="#">Descripción</a></th>
+                    <th style="width: 18.057720057720058%;"><a href="#">Fecha Vencimiento</a></th>
+                    <th style="width: 18.057720057720058%;"><a href="#">Cantidad</a></th>
+                    <th style="width: 1%;"><a href="#">Acciones</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for materia in materias_primas %}
+                <tr>
+                    <td>{{ materia.name }}</td>
+                    <td>{{ materia.descripcion }}</td>
+                    <td>{{ materia.fecha_ven }}</td>
+                    <td>{{ materia.cantidad }}</td>
+                    <td>
+                        <div class="btn-group">
+                        <a class="nav-link" href="">
+                            <button class="btn btn-warning">
+                            <i class="bi bi-pencil-square" data-toggle="tooltip" title="Editar"></i>
+                            </button>
+                        </a>
+                        <a class="nav-link" href="">
+                            <button class="btn btn-danger" data-toggle="tooltip" title="Eliminar">
+                            <i class="bi bi-trash3-fill"></i>
+                            </button>
+                        </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+{% endblock %}

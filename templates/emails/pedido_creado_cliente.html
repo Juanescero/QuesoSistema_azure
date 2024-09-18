@@ -1,0 +1,9 @@
+<h2>Hola {{ pedido.cliente.primer_nombre }},</h2>
+<p>Gracias por tu pedido #{{ pedido.id }}. A continuación, los detalles de tu pedido:</p>
+<ul>
+    {% for detalle in detalles %}
+    <li>{{ detalle.producto.nombre }} x {{ detalle.cantidad }} - ${{ detalle.precio }}</li>
+    {% endfor %}
+</ul>
+<p>Subtotal: ${{ pedido.subtotal }}</p>
+<p>Recibirás más actualizaciones cuando el estado de tu pedido cambie.</p>

@@ -1,0 +1,223 @@
+{% extends 'sales/basedash.html' %}
+{% block main %}
+  <div class="content px-5">
+    <ul class="nav nav-tabs mb-3">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'productos' %}">Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'materia_prima' %}">Materia Prima</a>
+      </li>
+    </ul>
+    <!-- Mensajes de retroalimentacion -->
+    {% for message in messages %}
+      <div class="alert {% if message.tags == 'error' %}
+          
+           alert-danger
+
+        {% elif message.tags == 'success' %}
+          
+           alert-success
+
+        {% endif %}"
+        role="alert">{{ message }}</div>
+    {% endfor %}
+    <!-- Tabla Productos -->
+    <div class="card mb-4 card-table mt-4">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <i class="ph-bold ph-squares-four"></i> Productos
+          </div>
+          <div>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarProductoModal">Agregar Producto</button>
+          </div>
+        </div>
+      </div>
+      <div class="card card-custom">
+        <div class="table-responsive">
+          <table id="productosTable" class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for producto in productos %}
+                <tr>
+                  <td>{{ producto.nombre }}</td>
+                  {% if producto.descontinuado %}
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>Descontinuado</td>
+                  {% else %}
+                    <td>{{ producto.stock }}</td>
+                    <td>$ {{ producto.precio }}</td>
+                    <td>
+                      <!-- Botón para editar el producto -->
+                      <a href="#" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#editarProductoModal{{ producto.id }}" title="Editar">
+                        <i class="ph-bold ph-pencil-simple"></i>
+                      </a> <!-- Botón para descontinuar el producto -->
+                      <a href="{% url 'descontinuar_producto' producto.id %}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Descontinuar"><i class="ph-bold ph-receipt-x"></i></a>
+                    </td>
+                  {% endif %}
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="4" class="text-center">No hay productos disponibles.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Tabla LoteProducto -->
+    <div class="card mb-4 card-table mt-4">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <i class="ph-bold ph-factory"></i> Lotes de Producto
+          </div>
+          <div>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarLPModal">Agregar Lote</button>
+          </div>
+        </div>
+      </div>
+      <div class="card card-custom">
+        <div class="table-responsive">
+          <table id="lotesProductoTable" class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre del Producto</th>
+                <th>Cantidad</th>
+                <th>Fecha de Producción</th>
+                <th>Fecha de Vencimiento</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for lote in lotes_producto %}
+                <tr>
+                  <td>{{ lote.producto.nombre }}</td>
+                  <td>{{ lote.cantidad_producto }}</td>
+                  <td>{{ lote.fecha_produccion }}</td>
+                  <td>{{ lote.fecha_vencimiento }}</td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="4" class="text-center">No hay lotes de producto disponibles.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block modal %}
+  <!-- Modal para agregar producto -->
+  <div class="modal fade" id="agregarProductoModal" tabindex="-1" aria-labelledby="agregarProductoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="agregarProductoModalLabel">Agregar Producto</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="addProductoForm" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="modal-body">{{ producto_form.as_p }}</div>
+          <input type="hidden" name="form_type" value="producto" />
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% for producto in productos %}
+    <!-- Modal para editar producto -->
+    <div class="modal fade" id="editarProductoModal{{ producto.id }}" tabindex="-1" aria-labelledby="editarProductoModalLabel{{ producto.id }}" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-secondary text-white">
+            <h5 class="modal-title" id="editarProductoModalLabel{{ producto.id }}">Editar Producto - {{ producto.nombre }}</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="editProductoForm{{ producto.id }}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="modal-body">
+              <input type="hidden" name="producto_id" value="{{ producto.id }}">
+              <input type="hidden" name="form_type" value="editar_producto">
+              {{ producto_form.as_p }}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-success">Guardar cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+  <!-- Modal para agregar lote de producto -->
+  <div class="modal fade" id="agregarLPModal" tabindex="-1" aria-labelledby="agregarLPModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="agregarLPModalLabel">Agregar Lote de Producto</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="addLPForm" method="POST">
+          {% csrf_token %}
+          <div class="modal-body">{{ lote_form.as_p }}</div>
+          <input type="hidden" name="form_type" value="lote_producto" />
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    document.querySelectorAll('form').forEach((form) => {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault()
+        const form = this
+        const formData = new FormData(form)
+        fetch(form.action, {
+          method: 'POST',
+          body: formData
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              location.reload() // Recargar la página en caso de éxito
+            } else {
+              // Limpiar errores previos
+              const modalBody = form.querySelector('.modal-body')
+              modalBody.querySelectorAll('.error-message').forEach((error) => error.remove())
+    
+              // Insertar nuevos errores
+              const errors = Object.entries(data.errors)
+                .map(([field, error]) => `<p class="error-message text-danger">${error.join(', ')}</p>`)
+                .join('')
+              modalBody.insertAdjacentHTML('afterbegin', errors) // Insertar errores al inicio del modal
+            }
+          })
+          .catch((error) => console.error('Error:', error))
+      })
+    })
+  </script>
+{% endblock %}

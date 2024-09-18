@@ -1,0 +1,197 @@
+{% extends 'sales/basedash.html' %}
+{% block main %}
+  <div class="content px-5">
+    <ul class="nav nav-tabs mb-3">
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{% url 'productos' %}">Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="{% url 'materia_prima' %}">Materia Prima</a>
+      </li>
+    </ul>
+    <!-- Mensajes de retroalimentacion -->
+    {% for message in messages %}
+      <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endfor %}
+    <!-- Tabla Materias Primas -->
+    <div class="card mb-4 card-table mt-4">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <i class="ph-bold ph-jar-label"></i> Materias Primas
+          </div>
+          <div>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarMateriaPrimaModal">Agregar Materia Prima</button>
+          </div>
+        </div>
+      </div>
+      <div class="card card-custom">
+        <div class="table-responsive">
+          <table id="materiaPrimaTable" class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for materia in materias_primas %}
+                <tr>
+                  <td>{{ materia.nombre }}</td>
+                  {% if materia.descontinuado %}
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>Descontinuado</td>
+                  {% else %}
+                    <td>
+                      {% if materia.descripcion|length > 60 %}
+                        {{ materia.descripcion|slice:':60' }}...
+                      {% else %}
+                        {{ materia.descripcion }}
+                      {% endif %}
+                    </td>
+                    <td>{{ materia.stock }}</td>
+                    <td>
+                      <!-- Botón para descontinuar la materia prima -->
+                      <a href="{% url 'descontinuar_materia' materia.id %}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Descontinuar"><i class="ph-bold ph-receipt-x"></i></a>
+                    </td>
+                  {% endif %}
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="4">No hay materias primas disponibles.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla Entradas Materia Prima -->
+    <div class="card mb-4 card-table mt-4">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <i class="ph-bold ph-sign-in"></i>
+            Entradas Materia Prima
+          </div>
+          <div>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarEntradaMateriaPrimaModal">Agregar Entrada</button>
+          </div>
+        </div>
+      </div>
+      <div class="card card-custom">
+        <div class="table-responsive">
+          <table id="entradaMateriaPrimaTable" class="table table-hover">
+            <thead>
+              <tr>
+                <th>Proveedor</th>
+                <th>Fecha de Entrada</th>
+                <th>Cantidad</th>
+                <th>Fecha de Vencimiento</th>
+                <th>Costo Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if entrada_materia_prima %}
+                {% for entrada in entrada_materia_prima %}
+                  <tr>
+                    <td>{{ entrada.proveedor.nombre }}</td>
+                    <td>{{ entrada.fecha_entrada }}</td>
+                    <td>{{ entrada.cantidad }}</td>
+                    <td>{{ entrada.fecha_vencimiento|default:'No aplica' }}</td>
+                    <td>$ {{ entrada.costo_total|floatformat:2 }}</td>
+                  </tr>
+                {% endfor %}
+              {% else %}
+                <tr>
+                  <td colspan="5">No hay entradas de materia prima disponibles.</td>
+                </tr>
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block modal %}
+  <!-- Modal para agregar materia prima -->
+  <div class="modal fade" id="agregarMateriaPrimaModal" tabindex="-1" aria-labelledby="agregarMateriaPrimaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="agregarMateriaPrimaModalLabel">Agregar Materia Prima</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="addMateriaPrimaForm" method="POST">
+          {% csrf_token %}
+          <div class="modal-body">{{ materia_form.as_p }}</div>
+          <input type="hidden" name="form_type" value="materia_prima" />
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para agregar entrada de materia prima -->
+  <div class="modal fade" id="agregarEntradaMateriaPrimaModal" tabindex="-1" aria-labelledby="agregarEntradaMateriaPrimaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title" id="agregarEntradaMateriaPrimaModalLabel">Agregar Entrada de Materia Prima</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="addEntradaMateriaPrimaForm" method="POST">
+          {% csrf_token %}
+          <div class="modal-body">{{ entrada_form.as_p }}</div>
+          <input type="hidden" name="form_type" value="entrada_materia_prima" />
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    document.querySelectorAll('form').forEach((form) => {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault()
+        const form = this
+        const formData = new FormData(form)
+        fetch(form.action, {
+          method: 'POST',
+          body: formData
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              location.reload() // Recargar la página en caso de éxito
+            } else {
+              // Limpiar errores previos
+              const modalBody = form.querySelector('.modal-body')
+              modalBody.querySelectorAll('.error-message').forEach((error) => error.remove())
+    
+              // Insertar nuevos errores
+              const errors = Object.entries(data.errors)
+                .map(([field, error]) => `<p class="error-message text-danger">${error.join(', ')}</p>`)
+                .join('')
+              modalBody.insertAdjacentHTML('afterbegin', errors) // Insertar errores al inicio del modal
+            }
+          })
+          .catch((error) => console.error('Error:', error))
+      })
+    })
+  </script>
+{% endblock %}

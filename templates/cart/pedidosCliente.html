@@ -1,0 +1,63 @@
+{% extends 'cart/dashBaseCliente.html' %}
+
+{% block main %}
+  <div class="container mt-5">
+    <h2>Mis Pedidos</h2>
+    {% for message in messages %}
+      <div class="alert {% if message.tags == 'error' %}
+           alert-danger
+        {% elif message.tags == 'success' %}
+           alert-success
+        {% endif %}"
+        role="alert">{{ message }}</div>
+    {% endfor %}
+    {% if pedidos %}
+      <div class="accordion" id="accordionPedidos">
+        {% for pedido in pedidos %}
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="heading{{ pedido.id }}"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ pedido.id }}" aria-expanded="false" aria-controls="collapse{{ pedido.id }}">Pedido #{{ pedido.id }} - {{ pedido.get_estado_display }} - {{ pedido.fecha_pedido|date:'d/m/Y H:i' }}</button></h2>
+            <div id="collapse{{ pedido.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ pedido.id }}" data-bs-parent="#accordionPedidos">
+              <div class="accordion-body">
+                <h5>Detalles del Pedido</h5>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Producto</th>
+                      <th>Cantidad</th>
+                      <th>Precio Unitario</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for detalle in pedido.detalles.all %}
+                      <tr>
+                        <td>{{ detalle.producto.nombre }}</td>
+                        <td>{{ detalle.cantidad }}</td>
+                        <td>${{ detalle.precio }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th colspan="3" class="text-end">Subtotal:</th>
+                      <th>${{ pedido.subtotal }}</th>
+                    </tr>
+                  </tfoot>
+                </table>
+                <!-- Mostrar botón de cancelar si el pedido está pendiente -->
+                {% if pedido.estado == 'pendiente' %}
+                  <form method="post" action="{% url 'cancelar_pedido' pedido.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger mt-3">Cancelar Pedido</button>
+                  </form>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-info">No has realizado ningún pedido aún.</div>
+    {% endif %}
+  </div>
+{% endblock %}

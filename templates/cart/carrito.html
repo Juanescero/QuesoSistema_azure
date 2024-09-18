@@ -1,0 +1,129 @@
+{% extends 'cart/dashBaseCliente.html' %}
+
+{% block main %}
+
+<div class="content px-5">
+    <!-- Tabla -->
+    <div class="card mb-4 card-table mt-4">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>  
+                    Carrito de Pedidos
+                </div>
+            </div>
+        </div>
+        <div class="card card-custom">
+            <div class="table-responsive">  
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Acumulado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if request.session.carrito %}
+                            {% for key, value in request.session.carrito.items %}
+                                <tr>
+                                    <td>{{ value.nombre }}</td>
+                                    <td>{{ value.cantidad }}</td>
+                                    <td>
+                                        ${{ value.acumulado }}
+                                        <div class="d-inline-block ms-3">
+                                            <a href="{% url 'Add' value.producto_id %}" class="badge btn btn-primary btn-custom btn-add">+</a>
+                                            <a href="{% url 'Sub' value.producto_id %}" class="badge btn btn-danger btn-custom btn-sub">-</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="3">
+                                    <div class="alert alert-danger text-center carrito-alert">Sin Productos</div>
+                                </td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <th>Total:</th>
+                            <td>${{ total_carrito }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-6">
+                <a id="btn-limpiar" href="{% url 'CLS' %}" class="btn btn-danger btn-clean mb-3">Limpiar</a>
+            </div>
+            <div class="col-6">
+                <a href="{% url 'procesar_pedido' %}" class="btn btn-success btn-checkout mb-3">Realizar Pedido</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Incluir SweetAlert2 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+<style>
+    .swal2-confirm.custom-button {
+        background-color: #01563F; 
+        border-color: #01563F;
+    }
+    .swal2-confirm.custom-button:hover {
+        background-color: #01563F; 
+        border-color: #01563F;
+    }
+    .swal2-cancel.custom-button {
+        background-color: #dc3545; /* Rojo para el botón de cancelar */
+        border-color: #dc3545;
+    }
+    .swal2-cancel.custom-button:hover {
+        background-color: #c82333; /* Color más oscuro al pasar el ratón */
+        border-color: #c82333;
+    }
+</style>
+
+{% if messages %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            {% if messages %}
+                {% for message in messages %}
+                    Swal.fire({
+                        title: '{{ message|escapejs }}',
+                        icon: '{% if message.tags == "success" %}success{% elif message.tags == "warning" %}warning{% elif message.tags == "error" %}error{% else %}info{% endif %}',
+                        confirmButtonText: 'Aceptar',
+                        customClass: {
+                            confirmButton: 'custom-button'
+                        }
+                    }).then((result) => {
+                        {% if message.tags == "success" and request.session.last_order_id and not request.session.notificaciones_activadas %}
+                            // Solo mostrar la segunda alerta si existe un pedido en la sesión y aún no se activaron las notificaciones
+                            Swal.fire({
+                                title: '¿Deseas recibir notificaciones sobre el estado de tu pedido?',
+                                icon: 'question',
+                                showCancelButton: true,
+                                confirmButtonText: 'Sí, notificarme',
+                                cancelButtonText: 'No, gracias',
+                                customClass: {
+                                    confirmButton: 'custom-button',
+                                    cancelButton: 'custom-button'
+                                }
+                            }).then((notificationResult) => {
+                                if (notificationResult.isConfirmed) {
+                                    window.location.href = '{% url "activar_notificaciones_pedido" request.session.last_order_id %}';
+                                } else {
+                                    window.location.href = '{% url "limpiar_notificacion_flag" %}';
+                                }
+                            });
+                        {% endif %}
+                    });
+                {% endfor %}
+            {% endif %}
+        });
+    </script>
+{% endif %}
+
+{% endblock %}

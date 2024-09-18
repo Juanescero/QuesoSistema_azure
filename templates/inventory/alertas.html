@@ -1,0 +1,84 @@
+{% extends 'sales/basedash.html' %}
+{% block main %}
+  <div class="content px-5">
+    <!-- Tabla Materias Primas -->
+    <div class="card mb-4 card-table mt-4">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <i class="ph-bold ph-jar-label"></i> Materias Primas con bajo stock
+          </div>
+        </div>
+      </div>
+      <div class="card card-custom">
+        <div class="table-responsive">
+          <table id="materiaPrimaTable" class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for materia in materias_primas %}
+                <tr>
+                  <td>{{ materia.nombre }}</td>
+                  <td>
+                    {% if materia.descripcion|length > 60 %}
+                      {{ materia.descripcion|slice:':60' }}...
+                    {% else %}
+                      {{ materia.descripcion }}
+                    {% endif %}
+                  </td>
+                  <td>{{ materia.stock }}</td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="4">No hay materias primas con stock bajo.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla Productos -->
+    <div class="card mb-4 card-table mt-4">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <i class="ph-bold ph-squares-four"></i> Productos con bajo stock
+          </div>
+        </div>
+      </div>
+      <div class="card card-custom">
+        <div class="table-responsive">
+          <table id="productosTable" class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for producto in productos %}
+                <tr>
+                  <td>{{ producto.nombre }}</td>
+                  <td>{{ producto.stock }}</td>
+                  <td>$ {{ producto.precio }}</td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="4" class="text-center">No hay productos con stock bajo.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

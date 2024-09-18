@@ -1,0 +1,233 @@
+{% extends 'blog/infoBase.html' %} {% load static %} {% block main %}
+<style>
+  .product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff7e6; /* Color suave adaptado para quesos */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  main {
+    margin-left: 15%;
+  }
+
+  .product-card:hover {
+    transform: scale(
+      1.05
+    ); /* Agranda la tarjeta ligeramente al pasar el cursor */
+  }
+
+  .product-card img {
+    height: 150px; /* Ajusta la altura de la imagen */
+    object-fit: cover; /* Mantén la proporción de la imagen */
+  }
+
+  .product-card-body {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .product-card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #b5651d; /* Color relacionado con quesos (tono marrón claro) */
+  }
+
+  .product-card-text {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  .product-card-price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #b5651d; /* Mismo color relacionado con quesos */
+    margin-bottom: 15px;
+  }
+
+  .product-card-button {
+    background-color: #2e8b57; /* Verde esmeralda oscuro */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .product-card-button:hover {
+    background-color: #1f6f4a; /* Verde esmeralda aún más oscuro al pasar el cursor */
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+  }
+
+  .product-card-wrapper {
+    width: 30%; /* Ajusta el ancho para 3 tarjetas por fila */
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .product-card-wrapper {
+      width: 48%; /* Para pantallas medianas, 2 tarjetas por fila */
+    }
+  }
+
+  @media (max-width: 576px) {
+    .product-card-wrapper {
+      width: 100%; /* Para pantallas pequeñas, 1 tarjeta por fila */
+    }
+  }
+
+  .container {
+    margin: 40px -35px;
+  }
+
+  .footer {
+    padding-left: 15% !important;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra el contenido del contenedor */
+    position: relative; /* Necesario para la posición absoluta del icono */
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: #8b5a2b;
+    margin: 10;
+  }
+
+  .cart-icon {
+    font-size: 50px;
+    color: #1f6f4a;
+    position: absolute;
+    right: 0; /* Coloca el ícono en la esquina derecha */
+    top: 50%;
+    transform: translateY(
+      -50%
+    ); /* Centra verticalmente el ícono respecto al contenedor */
+    text-decoration: none;
+  }
+
+
+  .alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+  }
+
+  .login-link {
+    color: #007f6d; /* Verde esmeralda oscuro */
+    text-decoration: none; /* Elimina el subrayado */
+    font-weight: bold; /* Opcional: hace el texto en negrita */
+  }
+
+  .login-link:hover {
+    text-decoration: underline; /* Opcional: añade subrayado al pasar el cursor */
+    color: #006f5d; /* Verde esmeralda más oscuro al pasar el cursor */
+  }
+
+  .notification-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #dc3545; /* Rojo de Bootstrap */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra el contenido del contenedor */
+    position: relative; /* Necesario para la posición absoluta del icono */
+    margin-bottom: 30px;
+  }
+</style>
+
+<!-- Bloque de mensajes de Django -->
+{% if messages %}
+<div class="container mt-5">
+  {% for message in messages %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="container">
+  <div class="header-container">
+    <a href="{% url 'carrito' %}" class="cart-icon"
+      ><i class="ph ph-shopping-cart"></i
+    ></a>
+    <h1>Catálogo de Productos</h1>
+  </div>
+  <div class="card-container">
+    {% for producto in productos %}
+    <div class="product-card-wrapper">
+      <div class="product-card">
+        {% if producto.imagen %}
+        <img
+          src="{{ producto.imagen.url }}"
+          alt="{{ producto.nombre }}"
+          class="card-img-top"
+        />
+        {% else %}
+        <img
+          src="https://via.placeholder.com/150"
+          alt="Imagen no disponible"
+          class="card-img-top"
+        />
+        {% endif %}
+        <div class="card-body product-card-body">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <p class="card-text">{{ producto.descripcion|truncatewords:12 }}</p>
+          <p class="card-text font-weight-bold">${{ producto.precio }}</p>
+          {% if user.is_authenticated %}
+          <a
+            class="btn btn-primary product-card-button"
+            href="{% url 'Add' producto.id %}"
+            >Añadir al Carrito</a
+          >
+          {% else %}
+          <div class="alert alert-info" role="alert">
+            Debes iniciar sesión para poder realizar una compra. Por favor,
+            <a href="{% url 'login' %}" class="login-link">inicia sesión</a>.
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

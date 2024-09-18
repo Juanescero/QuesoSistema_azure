@@ -1,0 +1,154 @@
+{% extends "blog/infoBase.html" %}
+{% load static %}
+{% block main %}
+<style>
+    .about-us {
+        background-color: #fbfaf3;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 15px 0;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .title-section {
+        padding: 40px;
+        position: relative;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .title-section img {
+        width: 100%;
+        height: auto;
+        opacity: 0.7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .title-section h1 {
+        font-size: 50px;
+        color: #333;
+        margin: 0;
+        padding: 20px 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    .title-section .date {
+        font-size: 20px;
+        color: #00563F;
+        position: relative;
+        z-index: 1;
+    }
+
+    .about-us h2 {
+        font-size: 24px;
+        color: #00563F;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+
+    .about-us p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .about-us img {
+        width: 60%;
+        height: auto;
+        margin: 10px 0;
+        border-radius: 8px;
+    }
+</style>
+
+<main>
+    <div class="title-section">
+        <img src="{% static 'images/recetasblg.jpg' %}" alt="Recetas de verano con queso">
+        <h1>Recetas de Verano con Queso: ¡Fáciles, Rápidas y Deliciosas!</h1>
+        <div class="date">25 julio 2024</div>
+    </div>
+
+    <section class="about-us">
+        <p>El queso es uno de los ingredientes más versátiles en la cocina, aportando un toque especial a cualquier plato. No solo mejora el sabor, sino que también puede hacer que las recetas sean más saludables. Aquí te presentamos algunas recetas de verano con queso que son frescas, fáciles de preparar y perfectas para los días calurosos. ¡Sorprenderás a tus invitados con su sencillez y delicioso sabor!</p>
+
+        <h2>Receta 1: Brochetas de Queso Tierno, Melón y Tomates Cherry</h2>
+        <img src="{% static 'images/receta1blg4.jpg' %}" alt="Brochetas de queso, melón y tomates cherry">
+        <p>Estas brochetas son refrescantes, ligeras y coloridas. Ideales como aperitivo o para acompañar una comida ligera.</p>
+
+        <h3>Ingredientes:</h3>
+        <ul>
+            <li>Melón</li>
+            <li>Queso fresco o tierno</li>
+            <li>Tomates cherry</li>
+            <li>Albahaca fresca</li>
+            <li>Aceite de oliva virgen extra</li>
+            <li>Sal y pimienta al gusto</li>
+        </ul>
+
+        <h3>Instrucciones:</h3>
+        <ol>
+            <li>Corta el melón en cubos y el queso en trozos del mismo tamaño.</li>
+            <li>Lava los tomates cherry y córtalos por la mitad.</li>
+            <li>Ensarta los ingredientes en brochetas, alternando melón, queso y tomates.</li>
+            <li>Decora con hojas de albahaca fresca y aliña con aceite de oliva, sal y pimienta.</li>
+            <li>¡Listo para servir!</li>
+        </ol>
+
+        <h2>Receta 2: Crema de Queso y Pimientos de Piquillo</h2>
+        <img src="{% static 'images/receta2blg4.jpg' %}" alt="Crema de queso y pimientos de piquillo">
+        <p>Una crema untable suave y ligeramente picante, ideal para untar en pan o galletas saladas.</p>
+
+        <h3>Ingredientes:</h3>
+        <ul>
+            <li>120g de queso curado o añejo</li>
+            <li>3 pimientos del piquillo</li>
+            <li>50g de mayonesa</li>
+            <li>Pimienta negra molida</li>
+            <li>Hierbas provenzales</li>
+            <li>Vinagre de Jerez</li>
+            <li>Ralladura de limón</li>
+            <li>Escamas de sal negra</li>
+        </ul>
+
+        <h3>Instrucciones:</h3>
+        <ol>
+            <li>Ralla o pica el queso. Colócalo en un procesador de alimentos junto con los pimientos del piquillo.</li>
+            <li>Tritura hasta obtener una pasta espesa.</li>
+            <li>Añade la mayonesa, pimienta, hierbas, vinagre y ralladura de limón al gusto. Tritura nuevamente.</li>
+            <li>Ajusta los condimentos si es necesario y sirve con escamas de sal negra.</li>
+        </ol>
+
+        <h2>Receta 3: Palitos Crujientes de Queso y Membrillo</h2>
+        <img src="{% static 'images/receta3blg4.jpg' %}" alt="Palitos crujientes de queso y membrillo">
+        <p>Un postre sencillo y delicioso, que combina la dulzura del membrillo con la cremosidad del queso.</p>
+
+        <h3>Ingredientes (para 8 personas):</h3>
+        <ul>
+            <li>1 paquete de pasta filo</li>
+            <li>50g de mantequilla</li>
+            <li>100g de queso Torta cremoso</li>
+            <li>100g de dulce de membrillo</li>
+            <li>1 yema de huevo</li>
+        </ul>
+
+        <h3>Instrucciones:</h3>
+        <ol>
+            <li>Precalienta el horno a 200ºC. Mete el queso en el congelador para que sea más fácil de manipular.</li>
+            <li>Extiende dos hojas de pasta filo, úntalas con mantequilla y córtalas en triángulos.</li>
+            <li>Coloca un trozo de queso en el extremo ancho del triángulo y enrolla.</li>
+            <li>Presiona los extremos para que el queso no se escape. Pinta los palitos con la yema de huevo.</li>
+            <li>Hornea de 5 a 7 minutos, hasta que estén dorados. Añade un trozo de membrillo encima y sirve.</li>
+        </ol>
+
+        <h2>¡A Disfrutar de Estas Recetas de Verano!</h2>
+        <p>Estas recetas no solo son fáciles de hacer, sino que también son una excelente forma de disfrutar el queso en platos frescos y sabrosos. ¡Esperamos que te animes a prepararlas y que sorprendas a tus invitados este verano!</p>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends "sales/basedash.html" %}
+{% block main %}
+{% comment %} <style>
+    /* Estilos personalizados para una apariencia más grande y cálida */
+
+    .container {
+        padding: 40px;
+        background-color: #f8f3e7;
+    }
+
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header {
+        background-color: #f9e9a3;
+        border-bottom: 2px solid #dec569;
+        color: #5e430b;
+    }
+
+    .card-body {
+        background-color: #fff8e5;
+        padding: 25px;
+        font-size: 1.2em; /* Tamaño de letra aumentado */
+        color: #5e430b;
+    }
+
+    .table {
+        border-radius: 8px;
+        overflow: hidden;
+        font-size: 1.1em; /* Tamaño de letra de la tabla aumentado */
+    }
+
+    .table thead th {
+        background-color: #f3da8f;
+        color: #5e430b;
+        font-weight: bold;
+    }
+
+    .table tbody tr:nth-child(odd) {
+        background-color: #fff8e5;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #f9e9a3;
+    }
+
+    .table tbody tr:hover {
+        background-color: #dec569;
+        color: #5e430b;
+    }
+
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #dec569;
+    }
+
+    .table td {
+        vertical-align: middle;
+    }
+
+    .btn-custom {
+        background-color: #dec569;
+        color: #5e430b;
+        font-size: 1.2em; /* Tamaño de letra aumentado para el botón */
+        font-weight: bold;
+        border-radius: 8px;
+        padding: 10px 20px;
+        text-align: center;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+    }
+
+    .btn-custom:hover {
+        background-color: #f3da8f;
+        color: #5e430b;
+    }
+
+    .second_btn-custom {
+        margin-top: 20px;
+    }
+
+</style> {% endcomment %}
+
+<div class="container my-5">
+    <div class="card mb-4">
+        <div class="card-header">
+            <h1 class="h4 mb-0">Pedido</h1>
+        </div>
+        <div class="card-body">
+            <p><strong>ID del pedido:</strong> {{ pedido.id }}</p>
+            <p><strong>Estado:</strong> {{ pedido.get_estado_display }}</p>
+            <p><strong>Subtotal:</strong> ${{ pedido.subtotal }}</p>
+            <p><strong>Cliente:</strong> {{ pedido.cliente }}</p>
+            <p><strong>Fecha del pedido:</strong> {{ pedido.fecha_pedido }}</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2 class="h5 mb-0">Detalles del Pedido</h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for detalle in detalles_pedido %}
+                    <tr>
+                        <td>{{ detalle.producto.nombre }}</td>
+                        <td>{{ detalle.cantidad }}</td>
+                        <td>${{ detalle.precio }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center">No hay detalles disponibles.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col-2">
+        <a href="{% url 'dashboardPedidos' %}" class="btn btn-danger btn-lg btn-custom" type="submit">Volver</a>
+    </div>
+</div>
+{% endblock %}
+

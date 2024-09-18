@@ -1,0 +1,85 @@
+{% extends 'sales/basedash.html' %}
+
+{% block main %}
+  <div class="content px-5">
+    <div class="row mt-4 text-center">
+      <div class="col-xl-3 col-lg-6 mb-3">
+        <div class="card" style="border-color: #ffc107;">
+          <div class="card-body">
+            <i class="ph-bold ph-hourglass" style="color: #ffc107;"></i>
+            <h5 class="card-title">Pendientes</h5>
+            <a class="btn btn-warning btn-lg" href="{% url 'pedidos_pendientes' %}">{{ pedidos_pendientes }}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 mb-3">
+        <div class="card" style="border-color: #0d6efd;">
+          <div class="card-body">
+            <i class="ph-bold ph-clock-clockwise" style="color: #0d6efd;"></i>
+            <h5 class="card-title">En proceso</h5>
+            <a class="btn btn-primary btn-lg" href="{% url 'pedidos_proceso' %}">{{ pedidos_proceso }}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 mb-3">
+        <div class="card" style="border-color: #198754;">
+          <div class="card-body">
+            <i class="ph-bold ph-check-circle" style="color: #198754;"></i>
+            <h5 class="card-title">Completados</h5>
+            <a class="btn btn-success btn-lg" href="{% url 'pedidos_completados' %}">{{ pedidos_completados }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Tabla -->
+    <div class="card mb-4 card-table">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <i class="ph-bold ph-file-text"></i>
+            Pedidos Cancelados
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+      <div class="card card-custom">
+        <div class="table-responsive">
+          <table id="datatablesSimple" class="table table-hover">
+            <thead>
+              <tr>
+                <th style="width: 8%;">
+                  <a href="#">Fecha</a>
+                </th>
+                <th style="width: 18.057720057720058%;">
+                  <a href="#">Subtotal</a>
+                </th>
+                <th style="width: 18.057720057720058%;">
+                  <a href="#">Estado</a>
+                </th>
+                <th style="width: 18.057720057720058%;">
+                  <a href="#">Acciones</a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for pedido in pedidos %}
+                <tr>
+                  <td>{{ pedido.fecha_pedido }}</td>
+                  <td>{{ pedido.subtotal }}</td>
+                  <td>{{ pedido.get_estado_display }}</td>
+                  <td>
+                    <!-- Enlace para ver el pedido -->
+                    <a href="{% url 'consultar_pedido' pedido.id %}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver">
+                        <i class="ph-bold ph-eye"></i>
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

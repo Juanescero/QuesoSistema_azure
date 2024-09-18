@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fbfaf3;
+  margin: 0;
+  padding: 0;
+  padding-top: 60px; 
+}
+
+nav {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #00563f;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  z-index: 1000; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 30px;
+  display: flex;
+  align-items: center; /* Centra verticalmente los elementos */
+}
+
+nav ul li {
+  margin: 0 15px;
+  display: flex; /* Usa flexbox para alinear los elementos hijos */
+  align-items: center; /* Centra verticalmente el contenido del li */
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff9d9;
+  font-size: 18px;
+  font-weight: 400;
+  display: flex; /* Usa flexbox para centrar el contenido */
+  align-items: center; /* Centra verticalmente el contenido del enlace */
+}
+
+nav ul li a img {
+  width: 40px; /* Tamaño más pequeño para mejor alineación */
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #fff9d9;
+  object-fit: cover; 
+  margin: 0; 
+}
+
+nav ul li a:hover {
+  color: #44cc00;
+}
+
+.logo-navbar img {
+  height: 60px;
+}
+
+/* Footer Styles */
+.footer {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 250px !important;
+  background-color: #fff9d9;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.link h3 {
+  font-size: 18px;
+  color: #8b5a2b;
+  margin-bottom: 15px;
+}
+
+.link a {
+  font-size: 18px;
+  color: #00563f;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.link ul {
+  list-style: none;
+  padding: 0;
+}
+
+.link ul li a {
+  font-size: 16px;
+  color: #00563f;
+  display: block;
+  margin-bottom: 15px;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #006644;
+}
+
+/* Responsive*/
+@media screen and (max-width: 768px) {
+
+  .footer-content {
+    padding-left: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .link {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  iframe {
+    width: 100%;
+    height: 250px;
+  }
+}

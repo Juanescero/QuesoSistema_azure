@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>PROARCOL</title>
+    <link rel="icon" href="{% static 'images/Icono.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link src="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <header class="header">
+      <div id="menu" class="menu container">
+        <a href="#" class="logo"><img src="{% static 'images/Logo.png' %}" alt="icono" /></a>
+        <label for="menu"><img src="{% static 'images/Menu.png' %}" class="menu-icono" alt="" /></label>
+
+        <nav class="navbar">
+          <ul>
+            <li class="nav-item {% if request.path == '/' %}active {% endif %}">
+              <a href="{% url 'index' %}">Inicio</a>
+            </li>
+            <li class="nav-item {% if '/blog/' in request.path %}active {% endif %}">
+              <a href="{% url 'nosotros' %}">Nosotros</a>
+            </li>
+            <li class="nav-item {% if request.path == '' %}active {% endif %}">
+              <a href="{% url 'catalogo' %}">Productos</a>
+            </li>
+            <li class="nav-item {% if '/blog/' in request.path %}active {% endif %}">
+              <a href="{% url 'blog_informativo' %}">Blog</a>
+            </li>
+            <li class="nav-item {% if '/user/' in request.path %}active {% endif %}">
+              <a href="{% url 'contacto' %}">Contacto</a>
+            </li>
+            {% if user.is_authenticated %}
+              {% if is_empleado %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'dashboardPedidos' %}">
+                    {% if user.imagen %}
+                      <img src="{{ user.imagen.url }}" alt="Imagen de perfil" />
+                    {% else %}
+                      <img src="{% static 'images/default_profile.jpg' %}" alt="Imagen de perfil por defecto" />
+                    {% endif %}
+                  </a>
+                </li>
+              {% elif is_cliente %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'carrito' %}">
+                    {% if user.imagen %}
+                      <img src="{{ user.imagen.url }}" alt="Imagen de perfil" />
+                    {% else %}
+                      <img src="{% static 'images/default_profile.jpg' %}" alt="Imagen de perfil por defecto" />
+                    {% endif %}
+                  </a>
+                </li>
+              {% endif %}
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
+              </li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+
+      <div class="header-content container">
+        <h1>PROARCOL</h1>
+        <p>¡Bienvenidos a nuestra fábrica de queso, donde la excelencia y la pasión por el queso se unen para crear una experiencia única en cada bocado! Nos enorgullecemos de ser una industria que ha crecido y evolucionado a lo largo del tiempo, llevando la tradición y el sabor de nuestros quesos a nivel nacional.</p>
+      </div>
+    </header>
+
+    <section class="quesos">
+      <div class="quesos-content container">
+        <h2>Nuestros quesos</h2>
+        <p class="txt-p">Trabajamos con distintos tipos que quesos para darle un gusto unico a tu paladar, nuestros productos estan hechos con lo mejor del campo.</p>
+        <div class="quesos-group">
+          <div class="quesos-1">
+            <img src="{% static 'images/Queso1.png' %}" alt="queso bocadillo" />
+            <h3>Quesadillo</h3>
+            <p>¡Delicioso queso relleno de bocadillo, una experiencia culinaria irresistible que te sorprenderá!</p>
+          </div>
+          <div class="quesos-1">
+            <img src="{% static 'images/Queso2.png' %}" alt="queso con arequipe" />
+            <h3>Arequipillo</h3>
+            <p>Descubre el queso relleno de arequipe, una tentación inigualable que te cautivará desde el primer bocado.</p>
+            <p>
+              <a href="{% url 'nuestros_quesos' %}" class="btn-1">Información</a>
+            </p>
+          </div>
+          <div class="quesos-1">
+            <img src="{% static 'images/Queso3.png' %}" alt="queso pera" />
+            <h3>Queso pera</h3>
+            <p>Descubre el queso pera, una joya gastronómica que cautiva con su sabor auténtico y su rica tradición.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="services">
+      <div class="container services-content">
+        <h2 class="text-center">Instalaciones</h2> <!-- Centrando el título -->
+        <div class="row">
+          <div class="col-4">
+            <div class="services-1">
+              <h3>Sala de pasteurización</h3>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="services-1">
+              <h3>Sala de moldeado y prensado</h3>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="services-1">
+              <h3>Área de empaque y etiquetado</h3>
+            </div>
+          </div>
+        </div>
+        <p class="text-center mt-4">Estas áreas son esenciales en una fábrica de quesos, y su correcto funcionamiento y control son fundamentales para garantizar la producción de quesos de alta calidad y seguridad alimentaria.</p>
+      </div>
+    </main>
+    
+
+    <section id="general-nosotros" class="general">
+      <div class="general-1">
+        <h2>Sabores Únicos</h2>
+        <p>Explora sabores únicos con nuestra innovadora degustación de quesos rellenos. ¡Una experiencia deliciosa e inolvidable para tu paladar!</p>
+        <a href="{% url 'nuestros_quesos' %}" class="btn-1">Información</a>
+      </div>
+      <div class="general-2"></div>
+    </section>
+
+    <section class="general">
+      <div class="general-3"></div>
+      <div class="general-1">
+        <h2>Materia Prima</h2>
+        <p>El secreto detrás del sabor de nuestra materia prima gourmet. Seleccionamos cuidadosamente los mejores proveedores para ofrecerte quesos de calidad excepcional. Nuestros quesos provienen de leche fresca y natural. Desde la granja a tu mesa, cada bocado te deleitará con la autenticidad y la tradición de una experiencia única en sabores.</p>
+        <a href="{% url 'nuestras_materias_prima' %}" class="btn-1">Información</a>
+      </div>
+    </section>
+
+    <section class="blog container">
+      <h2>El arte de crear delicias</h2>
+      <p>¡Bienvenidos a nuestro blog sobre el proceso de fabricación de quesos rellenos! En esta ocasión, nos sumergiremos en la fascinante elaboración de nuestros queso. Descubre el arte y la dedicación que conlleva cada uno de estos sabores únicos.</p>
+      <div class="blog-content">
+        <div class="blog-1">
+          <img src="{% static 'images/delicias.jpg' %}" alt="" />
+          <h3>Recetas Innovadoras</h3>
+          <p>Descubre recetas innovadoras en nuestro blog, con el queso como protagonista. Desde platos frescos hasta ideas creativas, cada receta está hecha para sorprender tu paladar. ¡Anímate a probar algo nuevo!</p>
+        </div>
+        <div class="blog-1">
+          <img src="{% static 'images/delicias2.jpg' %}" alt="" />
+          <h3>Produccion de Quesos</h3>
+          <p>Descubre cómo transformamos el queso en postres irresistibles, combinando tradición y dulzura en cada creación. Visita nuestro blog para conocer más sobre estas deliciosas innovaciones. ¡Te encantarán!</p>
+        </div>
+      </div>
+      <a href="{% url 'blog_informativo' %}" class="btn-1">Blog Informativo</a>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-content container">
+        <div class="link">
+          <h3>NUESTROS PRODUCTOS</h3>
+          <ul>
+            <li>
+              <a href="#">Quesos</a>
+            </li>
+            <li>
+              <a href="#">Suscripciones</a>
+            </li>
+            <li>
+              <a href="#">Métodos</a>
+            </li>
+            <li>
+              <a href="#">Kits & Regalos</a>
+            </li>
+            <li>
+              <a href="#">Otros</a>
+            </li>
+            <li>
+              <a href="#">Puntos</a>
+            </li>
+          </ul>
+        </div>
+        <div class="link">
+          <h3>APRENDE MÁS</h3>
+          <ul>
+            <li>
+              <a href="#">¿Cómo lo hacemos?</a>
+            </li>
+            <li>
+              <a href="#">Hecho en Colombia</a>
+            </li>
+            <li>
+              <a href="#">Ofertas</a>
+            </li>
+            <li>
+              <a href="#">Preguntas Frecuentes</a>
+            </li>
+            <li>
+              <a href="#">¿Cómo lo preparo?</a>
+            </li>
+            <li>
+              <a href="#">Términos y condiciones</a>
+            </li>
+          </ul>
+        </div>
+        <div class="link">
+          <h3>SUÍGUENOS</h3>
+          <ul>
+            <li>
+              <a href="{% static 'Error404.html' %}"><img src="{% static 'images/Icon-Face.svg' %}" alt="facebook" width="30px" /></a>
+            </li>
+            <li>
+              <a href="{% static 'Error404.html' %}"><img src="{% static 'images/Icon-Twitt.svg' %}" alt="twitter" width="30px" /></a>
+            </li>
+            <li>
+              <a href="{% static 'Error404.html' %}"><img src="{% static 'images/Icon-Inst.svg' %}" alt="instagram" width="30px" /></a>
+            </li>
+          </ul>
+          <h3>ENVÍOS</h3>
+          <ul>
+            <li>
+              <a href="{% static 'Error500.html' %}">Envíos a todo Bogotá</a>
+            </li>
+          </ul>
+        </div>
+        <div class="link">
+          <h3>DONDE ESTAMOS</h3>
+          <ul>
+            <li>
+              <a href="#">Cll 64 bis #108 77</a>
+            </li>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31811.199271558795!2d-74.13005304134471!3d4.700384805091729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9caf2acfcfd5%3A0xa3a1da72c59786a1!2sCl.%2064%20Bis%20%23108-77%2C%20Bogot%C3%A1!5e0!3m2!1ses!2sco!4v1691529370503!5m2!1ses!2sco" width="350px" height="178px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

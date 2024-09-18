@@ -1,0 +1,51 @@
+{% extends 'sales/basedash.html' %}
+{% block style %}
+
+{% endblock %}
+
+{% block main %}
+  <div class="content px-5">
+    <!-- Tabla -->
+    <div class="card mb-4 card-table mt-4">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            Lista de Clientes
+          </div>
+        </div>
+      </div>
+      <div class="card card-custom">
+        <div class="table-responsive">
+          <table id="datatablesSimple" class="table table-hover">
+            <thead>
+              <tr>
+                <th>
+                  <a href="#">Documento</a>
+                </th>
+                <th>
+                  <a href="#">Correo Electrónico</a>
+                </th>
+                <th>
+                  <a href="#">Nombre Completo</a>
+                </th>
+                <th>
+                  <a href="#">Teléfono</a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for cliente in clientes %}
+                <tr>
+                  <td>{{ cliente.documento }}</td>
+                  <td>{{ cliente.email }}</td>
+                  <td>{{ cliente.primer_nombre }} {{ cliente.primer_apellido }}</td>
+                  <td>{{ cliente.telefono }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
